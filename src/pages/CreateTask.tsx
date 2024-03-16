@@ -3,7 +3,6 @@ import {useMedia} from "react-use";
 import {useUnit} from "effector-react";
 import {sample} from "effector";
 
-import styles from './CreateTask.module.scss'
 
 import {
     $description,
@@ -14,7 +13,10 @@ import {
     taskCreated,
     titleUpdated
 } from "@/features/task/create-task.ts";
+
 import {routes} from "@/shared/lib/routes";
+
+import styles from './CreateTask.module.scss'
 
 sample({
     clock: taskCreated,

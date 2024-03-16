@@ -1,8 +1,9 @@
 import {createRoutesView, RouterProvider} from 'atomic-router-react'
 
+import { router } from '@/app/router'
+
 import {Home} from "@/pages/Home/Home.tsx"
 import {CreateTask} from "@/pages/CreateTask"
-import { router } from '@/app/router'
 import {AppLayout} from "@/pages/AppLayout.tsx";
 
 const RoutesView = createRoutesView({

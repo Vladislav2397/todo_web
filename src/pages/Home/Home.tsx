@@ -3,15 +3,17 @@ import {useUnit} from "effector-react"
 import { useAutoAnimate } from '@formkit/auto-animate/react'
 import {Button, Text} from "@gravity-ui/uikit"
 
-import * as model from './model'
-import styles from './Home.module.scss'
-
 import {CompleteTaskButton, UncompleteTaskButton} from "@/features/task/CompleteTask.tsx"
+
 import {TaskRow, taskModel} from "@/entities/task"
+
 import {routes} from "@/shared/lib/routes"
 
-export const route = routes.home
+import styles from './Home.module.scss'
+import * as model from './model'
 
+
+export const route = routes.home
 
 export function HomePage() {
     const [showMode] = useUnit([model.$showMode])
@@ -82,6 +84,11 @@ function HomePageFooter() {
 
 function UncompletedTaskList() {
     const [ tasks ] = useUnit([taskModel.$uncompletedTasks])
+
+    if (!tasks.length) {
+        return <div>Empty</div>
+    }
+
     return <>
         {tasks.map(task => (
             <TaskRow className={styles.item} key={task.id} task={task}>
@@ -93,6 +100,10 @@ function UncompletedTaskList() {
 
 function CompletedTaskList() {
     const [ tasks ] = useUnit([taskModel.$completedTasks])
+
+    if (!tasks.length) {
+        return <div>Empty</div>
+    }
 
     return <>
         {tasks.map(task => (
