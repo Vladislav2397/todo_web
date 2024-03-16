@@ -16,6 +16,8 @@ import * as model from './model'
 const route = routes.home
 
 export function HomePage() {
+    model.useHomeGate()
+
     const [showMode] = useUnit([model.$showMode])
 
     const [parent] = useAutoAnimate()

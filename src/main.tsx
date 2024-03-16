@@ -2,6 +2,7 @@ import ReactDOM from 'react-dom/client'
 import {ThemeProvider, configure} from '@gravity-ui/uikit'
 import '@gravity-ui/uikit/styles/fonts.css'
 import '@gravity-ui/uikit/styles/styles.css'
+import "firebase/firestore"
 
 import App from '@/app/App.tsx'
 import './reset.scss'

@@ -1,6 +1,8 @@
-import {attach, createEvent, createStore, sample} from "effector";
+import {attach, createEvent, createStore, sample} from "effector"
 
-import {taskModel} from "@/entities/task";
+import {taskModel} from "@/entities/task"
+
+import {taskApi} from "@/shared/api/tasks.ts"
 
 export const createTaskButtonClicked = createEvent()
 export const createTaskCancelled = createEvent()
@@ -21,17 +23,23 @@ export const validateFx = attach({
     }
 })
 
-const $counter = createStore(10)
-
 export const createTaskFx = attach({
     source: {
         title: $title,
         description: $description,
-        counter: $counter,
     },
-    effect: ({ counter, title, description }) => {
+    effect: async ({ title, description }) => {
+        const response = await taskApi.create({
+            name: title,
+            description,
+        })
+
+        if (!response) {
+            throw new Error('Task not created')
+        }
+
         return {
-            id: counter,
+            id: response.id,
             name: title,
             description,
             isCompleted: false,
@@ -55,12 +63,6 @@ sample({
     source: { title: $title, description: $description },
     filter: $isTitleError.map(state => !state),
     target: createTaskFx,
-})
-sample({
-    clock: createTaskFx.done,
-    source: $counter,
-    fn: (counter) => counter + 1,
-    target: $counter,
 })
 sample({
     clock: createTaskFx.doneData,

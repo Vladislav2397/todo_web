@@ -1,46 +1,67 @@
 import {Button, Icon} from "@gravity-ui/uikit"
 import {Square, SquareCheck} from '@gravity-ui/icons'
-import {createEvent, sample} from "effector"
+import {createEffect, createEvent, sample} from "effector"
 import {useUnit} from "effector-react"
 
 import {taskModel} from "@/entities/task"
 
+import {taskApi} from "@/shared/api/tasks.ts"
+
 export type CompleteTaskButtonProps = {
     task: {
-        id: number
+        id: string
         name: string
     }
 }
 
-const taskCompleted = createEvent<number>()
+const updateTaskFx = createEffect(taskApi.update)
+
+const taskCompleted = createEvent<string>()
 sample({
     clock: taskCompleted,
     source: taskModel.$tasks,
     fn: (list, id) => {
-        return list.map(item => {
-            if (item.id !== id) return item
+        const task = list.find(item => item.id === id)
 
-            return {
-                ...item,
-                isCompleted: true,
-            }
-        })
+        if (!task) {
+            throw new Error('Task not found')
+        }
+
+        return {
+            ...task,
+            isCompleted: true,
+        }
     },
-    target: taskModel.$tasks,
+    target: updateTaskFx,
 })
 
-const taskUncompleted = createEvent<number>()
+const taskUncompleted = createEvent<string>()
 sample({
     clock: taskUncompleted,
     source: taskModel.$tasks,
     fn: (list, id) => {
-        return list.map(item => {
-            if (item.id !== id) return item
+        const task = list.find(item => item.id === id)
 
-            return {
-                ...item,
-                isCompleted: false,
-            }
+        if (!task) {
+            throw new Error('Task not found')
+        }
+
+        return {
+            ...task,
+            isCompleted: false,
+        }
+    },
+    target: updateTaskFx,
+})
+
+sample({
+    clock: updateTaskFx.doneData,
+    source: taskModel.$tasks,
+    fn: (list, newTask) => {
+        return list.map(item => {
+            if (item.id !== newTask.id) return item
+
+            return newTask
         })
     },
     target: taskModel.$tasks,

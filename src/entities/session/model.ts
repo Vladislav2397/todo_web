@@ -13,10 +13,6 @@ export const $session = createStore<Session>('anonymous').on(sessionUpdated, (_,
 export const $isSessionInitialized = createStore(false)
     .on(sessionInitialized, () => true)
 
-$isSessionInitialized.watch(state => {
-    console.log('$isSessionInitialized', state)
-})
-
 const auth = getAuth(app)
 
 onAuthStateChanged(auth, (user) => {

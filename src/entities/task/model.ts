@@ -1,18 +1,14 @@
-import {createStore} from "effector";
+import {createStore} from "effector"
 
-export const $tasks = createStore([
-    {
-        id: 1,
-        name: 'Task 1',
-        description: 'Task 1 description',
-        isCompleted: false,
-    },
-    {
-        id: 2,
-        name: 'Task 2',
-        description: 'Task 2 description',
-        isCompleted: false,
-    }
+type Task = {
+    id: string
+    name: string
+    description: string
+    isCompleted: boolean
+}
+
+export const $tasks = createStore<Task[]>([
+    //
 ])
 
 export const $uncompletedTasks = $tasks.map(tasks =>

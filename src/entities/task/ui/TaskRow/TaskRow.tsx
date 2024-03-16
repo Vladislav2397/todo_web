@@ -1,12 +1,12 @@
-import {Card, Text} from "@gravity-ui/uikit";
-import React from "react";
+import {Card, Text} from "@gravity-ui/uikit"
+import React from "react"
 
 import styles from './TaskRow.module.scss'
 
 export type TaskRowProps = {
     className?: string
     task: {
-        id: number
+        id: string
         name: string
         description: string
         isCompleted: boolean
