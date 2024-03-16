@@ -1,7 +1,7 @@
 import { createHistoryRouter } from 'atomic-router';
 import { createBrowserHistory } from 'history';
 
-import { Home } from '@/pages/Home'
+import { Home } from '@/pages/Home/Home.tsx'
 import { CreateTask } from '@/pages/CreateTask'
 
 // 1. Define routes

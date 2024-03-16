@@ -8,6 +8,7 @@ export type TaskRowProps = {
         id: number
         name: string
         description: string
+        isCompleted: boolean
     }
 }
 
@@ -15,7 +16,14 @@ export function TaskRow({ task, className, children }: React.PropsWithChildren<T
     return (
         <Card size={'m'} view={'raised'} className={[className, styles.root].join(' ')}>
             <div className={styles.content}>
-                <Text className={styles.title} variant={'subheader-1'} as={"h4"}>{task.name}</Text>
+                <Text
+                    className={styles.title}
+                    style={{ textDecoration: task.isCompleted ? 'line-through' : 'normal' }}
+                    color={task.isCompleted ? 'light-secondary' : 'light-primary'}
+                    variant={'subheader-1'}
+                    as={"h4"}>
+                    {task.name}
+                </Text>
                 <div className={styles.actions}>
                     {children}
                 </div>

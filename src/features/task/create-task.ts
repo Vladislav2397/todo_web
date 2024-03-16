@@ -29,7 +29,6 @@ export const createTaskFx = attach({
         counter: $counter,
     },
     effect: ({ counter, title, description }) => {
-        console.log('create task')
         return {
             id: counter,
             name: title,
@@ -40,10 +39,6 @@ export const createTaskFx = attach({
 })
 
 export const taskCreated = createTaskFx.done
-
-taskModel.$tasks.watch(state => {
-    console.log('taskModel.$tasks.watch', state)
-})
 
 sample({
     clock: createTaskButtonClicked,

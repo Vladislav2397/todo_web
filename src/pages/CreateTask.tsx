@@ -45,6 +45,7 @@ export function CreateTaskPage() {
                     className={styles.field}
                     view={'clear'}
                     size={'s'}
+                    minRows={10}
                     value={description}
                     placeholder={"Description"}
                     onUpdate={updateDescription}

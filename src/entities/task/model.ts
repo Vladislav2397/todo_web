@@ -18,3 +18,7 @@ export const $tasks = createStore([
 export const $uncompletedTasks = $tasks.map(tasks =>
     tasks.filter(task => !task.isCompleted)
 )
+
+export const $completedTasks = $tasks.map(tasks =>
+    tasks.filter(task => task.isCompleted)
+)
