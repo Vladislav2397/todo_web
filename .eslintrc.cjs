@@ -56,7 +56,13 @@ module.exports = {
                     "type",
                     "index",
                 ],
+                'newlines-between': 'always',
                 "pathGroups": [
+                    {
+                        "pattern": "react",
+                        "group": "builtin",
+                        "position": "before"
+                    },
                     {
                         "pattern": "@app/**",
                         "group": "internal",

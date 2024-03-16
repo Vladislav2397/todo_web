@@ -2,6 +2,7 @@ import {Button, Icon} from "@gravity-ui/uikit"
 import {Square, SquareCheck} from '@gravity-ui/icons'
 import {createEvent, sample} from "effector"
 import {useUnit} from "effector-react"
+
 import {taskModel} from "@/entities/task"
 
 export type CompleteTaskButtonProps = {

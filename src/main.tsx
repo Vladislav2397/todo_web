@@ -1,5 +1,6 @@
 import ReactDOM from 'react-dom/client'
 import {ThemeProvider, configure} from '@gravity-ui/uikit';
+
 import App from './app/App.tsx'
 import './reset.scss'
 import './main.scss'
