@@ -1,15 +1,14 @@
 import ReactDOM from 'react-dom/client'
 import {ThemeProvider, configure} from '@gravity-ui/uikit';
-
-import App from './app/App.tsx'
-import './reset.scss'
-import './main.scss'
-
 import '@gravity-ui/uikit/styles/fonts.css';
 import '@gravity-ui/uikit/styles/styles.css';
 
+import App from '@/app/App.tsx'
+import './reset.scss'
+import './main.scss'
+
 configure({
-    lang: 'ru',
+    lang: 'en',
 });
 
 const rootEl = document.getElementById('root')
