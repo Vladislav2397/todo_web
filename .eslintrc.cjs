@@ -20,6 +20,7 @@ module.exports = {
             'warn',
             { allowConstantExport: true },
         ],
+        'semi': ['warn', 'never'],
         "import/order": [
             "error",
             {

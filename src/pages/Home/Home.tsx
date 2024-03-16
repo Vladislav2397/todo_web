@@ -3,17 +3,17 @@ import {useUnit} from "effector-react"
 import { useAutoAnimate } from '@formkit/auto-animate/react'
 import {Button, Text} from "@gravity-ui/uikit"
 
-import {CompleteTaskButton, UncompleteTaskButton} from "@/features/task/CompleteTask.tsx"
+import {CompleteTaskButton, UncompleteTaskButton} from "@/features/task/CompleteTask"
 
 import {TaskRow, taskModel} from "@/entities/task"
+import {withAuthorized} from "@/entities/session/guard"
 
 import {routes} from "@/shared/lib/routes"
 
 import styles from './Home.module.scss'
 import * as model from './model'
 
-
-export const route = routes.home
+const route = routes.home
 
 export function HomePage() {
     const [showMode] = useUnit([model.$showMode])
@@ -126,5 +126,6 @@ function ToCreateTaskButton({ className }: { className?: string }) {
 
 export const Home = {
     route,
+    guardedRoute: withAuthorized(route, { otherwise: routes.login }),
     Page: HomePage,
 }

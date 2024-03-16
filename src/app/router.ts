@@ -1,22 +1,28 @@
-import { createHistoryRouter } from 'atomic-router';
-import { createBrowserHistory } from 'history';
+import { createHistoryRouter } from 'atomic-router'
+import { createBrowserHistory } from 'history'
+import {sample} from "effector"
 
-import { Home } from '@/pages/Home/Home.tsx'
+import { Home } from '@/pages/Home/Home'
 import { CreateTask } from '@/pages/CreateTask'
+import { Login } from "@/pages/auth/Login"
+
+import * as model from "./model"
+
 
 // 1. Define routes
 const routes = [
     { path: '/', route: Home.route },
     { path: '/create-task', route: CreateTask.route },
-];
+    { path: '/login', route: Login.route },
+]
 
 // 2. Create router
 export const router = createHistoryRouter({
     routes: routes,
-});
+})
 
-// 3. Create history
-const history = createBrowserHistory();
-
-// 4. Attach it to router
-router.setHistory(history);
+sample({
+    clock: model.appInitialized,
+    fn: () => createBrowserHistory(),
+    target: router.setHistory,
+})
