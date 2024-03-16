@@ -1,8 +1,8 @@
-import {routes} from "@/shared/lib/routes.ts";
-import styles from './CreateTask.module.scss'
 import {Button, Text, TextArea, TextInput} from "@gravity-ui/uikit";
 import {useMedia} from "react-use";
 import {useUnit} from "effector-react";
+import {sample} from "effector";
+import styles from './CreateTask.module.scss'
 import {
     $description,
     $title,
@@ -12,7 +12,7 @@ import {
     taskCreated,
     titleUpdated
 } from "@/features/task/create-task.ts";
-import {sample} from "effector";
+import {routes} from "@/shared/lib/routes";
 
 sample({
     clock: taskCreated,

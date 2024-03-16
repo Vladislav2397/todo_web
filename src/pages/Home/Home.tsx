@@ -2,15 +2,14 @@ import {useMedia} from "react-use"
 import {useUnit} from "effector-react"
 import { useAutoAnimate } from '@formkit/auto-animate/react'
 import {Button, Text} from "@gravity-ui/uikit"
+import * as model from './model'
+import styles from './Home.module.scss'
 
 import {CompleteTaskButton, UncompleteTaskButton} from "@/features/task/CompleteTask.tsx"
 
 import {TaskRow, taskModel} from "@/entities/task"
 
-import {routes} from "@/shared/lib/routes.ts"
-
-import styles from './Home.module.scss'
-import * as model from './model'
+import {routes} from "@/shared/lib/routes"
 
 export const route = routes.home
 
@@ -39,7 +38,6 @@ function ToggleShowModeButton({ className }: { className?: string }) {
     const [mode, updateMode] = useUnit([model.$showMode, model.showModeUpdated])
 
     function toggle() {
-        console.log('updateMode', mode)
         updateMode(mode === 'completed' ? 'uncompleted' : 'completed')
     }
 
