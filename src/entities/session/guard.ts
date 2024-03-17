@@ -7,6 +7,9 @@ import {
 
 import { $session } from './model'
 
+/**
+ * @deprecated
+ */
 export const withAuthorized = <Params extends object>(route: RouteInstance<Params>, config?: { otherwise: RouteInstance<object>}) => {
     const sessionCheckStarted = createEvent<RouteParamsAndQuery<Params>>()
     const sessionEstablished = createEvent()
@@ -48,6 +51,8 @@ export const withAuthorized = <Params extends object>(route: RouteInstance<Param
         cancelOn: sessionCheckFailed,
     })
 }
+
+export const chainAuthorized = withAuthorized
 
 export const withUnauthorized = <Params extends object>(route: RouteInstance<Params>, config?: { otherwise: RouteInstance<object>}) => {
     const sessionCheckStarted = createEvent<RouteParamsAndQuery<Params>>()

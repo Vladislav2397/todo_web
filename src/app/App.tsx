@@ -1,22 +1,23 @@
 import {createRoutesView, RouterProvider} from 'atomic-router-react'
 import {useUnit} from "effector-react"
+import {Link, Text} from "@gravity-ui/uikit"
 
 import { router } from '@/app/router'
 
 import {Login} from "@/pages/auth/Login"
-import {Home} from "@/pages/Home"
-import {CreateTask} from "@/pages/CreateTask"
-import {AppLayout} from "@/pages/AppLayout"
+import {Main} from "@/pages/main/MainLayout"
 
 import * as model from './model'
 
 const RoutesView = createRoutesView({
     routes: [
         { route: Login.route, view: Login.Page },
-        { route: Home.guardedRoute, view: Home.Page, layout: AppLayout },
-        { route: CreateTask.route, view: CreateTask.Page, layout: AppLayout },
+        { route: Main.guardedRoute, view: Main.Page }
     ],
-    otherwise: () => <div>Otherwise RoutesView</div>
+    otherwise: () => <div>
+        <Text variant={'display-3'} as={'h2'}>Page not found</Text>
+        <Link href={'/main'}>Go To Home</Link>
+    </div>
 })
 
 function App() {
