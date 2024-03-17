@@ -2,7 +2,7 @@ import {createEffect, createEvent, createStore, sample} from "effector"
 
 import {taskModel} from "@/entities/task"
 
-import {taskApi} from "@/shared/api/tasks"
+import {taskApi} from "@/shared/api/tasks.ts"
 
 import {createGateHook} from "@/packages/effector-helpers"
 

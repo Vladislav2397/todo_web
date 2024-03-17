@@ -1,9 +1,9 @@
 import {createGate, useGate} from "effector-react"
 
-export function createGateHook<T>(props?: T) {
-    const Gate = createGate()
+export function createGateHook<T = void>() {
+    const Gate = createGate<T>()
 
-    const useGateHook = () => useGate(Gate, props)
+    const useGateHook = (props: T) => useGate(Gate, props)
 
     return [Gate, useGateHook] as const
 }

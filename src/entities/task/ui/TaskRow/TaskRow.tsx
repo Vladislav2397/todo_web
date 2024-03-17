@@ -11,11 +11,12 @@ export type TaskRowProps = {
         description: string
         isCompleted: boolean
     }
+    onClick?: () => void
 }
 
-export function TaskRow({ task, className, children }: React.PropsWithChildren<TaskRowProps>) {
+export function TaskRow({ task, className, children, onClick }: React.PropsWithChildren<TaskRowProps>) {
     return (
-        <Card size={'m'} view={'raised'} className={[className, styles.root].join(' ')}>
+        <Card size={'m'} view={'filled'} type={'action'} className={[className, styles.root].join(' ')} onClick={onClick}>
             <div className={styles.content}>
                 <Text
                     className={styles.title}

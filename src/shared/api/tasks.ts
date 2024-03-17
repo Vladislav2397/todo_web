@@ -1,4 +1,9 @@
-import {addQuery, getQuery, updateQuery} from "@/shared/api/request"
+import {
+    addQuery,
+    getByIdQuery,
+    getQuery,
+    updateQuery
+} from "@/shared/api/request"
 
 type TaskApi = {
     id: string
@@ -24,6 +29,18 @@ export const getTasks = async () => {
     }
 }
 
+export const getTaskById = async (id: string) => {
+    const ref = await getByIdQuery('tasks', id)
+
+    return {
+        id: ref.id,
+        ...ref.data() as {
+            name: string
+            description: string
+        },
+    }
+}
+
 export const createTask = async ({ name, description }: Record<string, string>) => {
     const query = await addQuery('tasks', {
         name,
@@ -37,12 +54,12 @@ export const createTask = async ({ name, description }: Record<string, string>) 
 }
 
 export const updateTask = async (newTask: any) => {
-    console.log('update tasks', newTask)
     return await updateQuery('tasks', newTask)
 }
 
 export const taskApi = {
     getList: getTasks,
+    get: getTaskById,
     create: createTask,
     update: updateTask,
 }

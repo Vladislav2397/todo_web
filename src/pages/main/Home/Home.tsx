@@ -3,15 +3,15 @@ import {useUnit} from "effector-react"
 import { useAutoAnimate } from '@formkit/auto-animate/react'
 import {Button, Text} from "@gravity-ui/uikit"
 
-import {CompleteTaskButton, UncompleteTaskButton} from "@/features/task/CompleteTask"
+import {CompleteTaskButton, UncompleteTaskButton} from "@/features/task/CompleteTask.tsx"
 
 import {TaskRow, taskModel} from "@/entities/task"
-import {withAuthorized} from "@/entities/session/guard"
+import {withAuthorized} from "@/entities/session/guard.ts"
 
-import {routes} from "@/shared/lib/routes"
+import {routes} from "@/shared/lib/routes.ts"
 
 import styles from './Home.module.scss'
-import * as model from './model'
+import * as model from './model.ts'
 
 const route = routes.home
 
@@ -93,7 +93,14 @@ function UncompletedTaskList() {
 
     return <>
         {tasks.map(task => (
-            <TaskRow className={styles.item} key={task.id} task={task}>
+            <TaskRow
+                className={styles.item}
+                onClick={() => {
+                    console.log('click by card')
+                    routes.editTask.open({ id: task.id })
+                }}
+                key={task.id}
+                task={task}>
                 <CompleteTaskButton task={task} />
             </TaskRow>
         ))}
@@ -109,7 +116,11 @@ function CompletedTaskList() {
 
     return <>
         {tasks.map(task => (
-            <TaskRow className={styles.item} key={task.id} task={task}>
+            <TaskRow
+                className={styles.item}
+                key={task.id}
+                task={task}
+            >
                 <UncompleteTaskButton task={task} />
             </TaskRow>
         ))}

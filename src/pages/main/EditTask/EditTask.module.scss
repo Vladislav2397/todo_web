@@ -1,0 +1,43 @@
+.header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.headerButton {
+    & + & {
+        margin-left: 12px;
+    }
+}
+
+.title {
+    flex-grow: 1;
+}
+
+.content {
+    padding-top: 24px;
+    padding-bottom: 24px;
+    flex-grow: 1;
+}
+
+.field + .field {
+    margin-top: 12px;
+}
+
+.footer {
+    padding-top: 12px;
+    border-top: 1px solid var(--g-color-line-generic);
+    padding-bottom: 32px;
+    display: flex;
+    flex-direction: row;
+}
+
+.button {
+    flex-grow: 1;
+    flex-shrink: 1;
+    min-width: 0;
+
+    & + & {
+        margin-left: 12px;
+    }
+}

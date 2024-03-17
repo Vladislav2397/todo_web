@@ -3,38 +3,40 @@ import {useMedia} from "react-use"
 import {useUnit} from "effector-react"
 import {sample} from "effector"
 
-
 import {
     $description,
     $title,
-    createTaskButtonClicked,
-    createTaskCancelled,
+    editTaskButtonClicked,
+    editTaskCancelled,
     descriptionUpdated,
-    taskCreated,
-    titleUpdated
-} from "@/features/task/create-task"
+    taskUpdated,
+    titleUpdated, useEditTaskGate
+} from "@/features/task/edit-task"
 
 import {routes} from "@/shared/lib/routes"
 
-import styles from './CreateTask.module.scss'
+import styles from './EditTask.module.scss'
 
 sample({
-    clock: taskCreated,
+    clock: taskUpdated,
     target: routes.home.open,
 })
 sample({
-    clock: createTaskCancelled,
+    clock: editTaskCancelled,
     target: routes.home.open,
 })
 
-export const route = routes.createTask
+export const route = routes.editTask
 
-export function CreateTaskPage() {
+export function EditTaskPage() {
+    const params = useUnit(route.$params)
+    useEditTaskGate(params)
+
     const [ title, description, updateTitle, updateDescription ] = useUnit([$title, $description, titleUpdated, descriptionUpdated])
 
     return (
         <>
-            <CreateTaskPageHeader/>
+            <EditTaskPageHeader/>
             <div className={styles.content}>
                 <TextInput
                     className={styles.field}
@@ -55,28 +57,28 @@ export function CreateTaskPage() {
                     onUpdate={updateDescription}
                 />
             </div>
-            <CreateTaskPageFooter />
+            <EditTaskPageFooter />
         </>
     )
 }
 
-export function CreateTaskPageHeader() {
+export function EditTaskPageHeader() {
     const isNotMobile = useMedia('(min-width: 650px)')
 
     return (
         <div className={styles.header}>
-            <Text className={styles.title} variant={'display-3'} as={'h1'}>Create Task</Text>
+            <Text className={styles.title} variant={'display-3'} as={'h1'}>Edit Task</Text>
             {isNotMobile && (
                 <>
                     <CancelTaskButton className={styles.headerButton} />
-                    <CreateTaskButton className={styles.headerButton} />
+                    <EditTaskButton className={styles.headerButton} />
                 </>
             )}
         </div>
     )
 }
 
-function CreateTaskPageFooter() {
+function EditTaskPageFooter() {
     const isNotMobile = useMedia('(min-width: 650px)')
 
     if (isNotMobile) return null
@@ -84,24 +86,24 @@ function CreateTaskPageFooter() {
     return (
         <div className={styles.footer}>
             <CancelTaskButton className={styles.button} />
-            <CreateTaskButton className={styles.button} />
+            <EditTaskButton className={styles.button} />
         </div>
     )
 }
 
 function CancelTaskButton({ className }: { className?: string }) {
-    const [cancel] = useUnit([createTaskCancelled])
+    const [cancel] = useUnit([editTaskCancelled])
 
     return <Button className={className} size={'l'} onClick={cancel}>Cancel</Button>
 }
 
-function CreateTaskButton({ className }: { className?: string }) {
-    const [createTask] = useUnit([createTaskButtonClicked])
+function EditTaskButton({ className }: { className?: string }) {
+    const [editTask] = useUnit([editTaskButtonClicked])
 
-    return <Button className={className} size={'l'} view={'action'} onClick={createTask}>Create</Button>
+    return <Button className={className} size={'l'} view={'action'} onClick={editTask}>Update</Button>
 }
 
-export const CreateTask = {
+export const EditTask = {
     route,
-    Page: CreateTaskPage,
+    Page: EditTaskPage,
 }
