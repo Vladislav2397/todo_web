@@ -1,1 +1,1 @@
-export * from './TaskRow.tsx'
+export * from './TaskRow'

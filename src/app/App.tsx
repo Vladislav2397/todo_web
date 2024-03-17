@@ -8,7 +8,7 @@ import {Home} from "@/pages/Home"
 import {CreateTask} from "@/pages/CreateTask"
 import {AppLayout} from "@/pages/AppLayout"
 
-import * as model from './model.ts'
+import * as model from './model'
 
 const RoutesView = createRoutesView({
     routes: [

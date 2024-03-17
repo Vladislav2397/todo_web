@@ -2,7 +2,7 @@ import {attach, createEvent, createStore, sample} from "effector"
 
 import {taskModel} from "@/entities/task"
 
-import {taskApi} from "@/shared/api/tasks.ts"
+import {taskApi} from "@/shared/api/tasks"
 
 export const createTaskButtonClicked = createEvent()
 export const createTaskCancelled = createEvent()

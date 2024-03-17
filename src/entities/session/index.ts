@@ -1,5 +1,5 @@
-import * as sessionModel from './model.ts'
-import * as sessionGuards from './guard.ts'
+import * as sessionModel from './model'
+import * as sessionGuards from './guard'
 
 export {
     sessionModel,

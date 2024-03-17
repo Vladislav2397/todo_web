@@ -4,7 +4,7 @@ import '@gravity-ui/uikit/styles/fonts.css'
 import '@gravity-ui/uikit/styles/styles.css'
 import "firebase/firestore"
 
-import App from '@/app/App.tsx'
+import App from '@/app/App'
 import './reset.scss'
 import './main.scss'
 

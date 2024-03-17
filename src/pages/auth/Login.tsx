@@ -2,7 +2,7 @@ import {Button, Card, Text, TextInput} from "@gravity-ui/uikit"
 
 import {signInByGoogle} from "@/features/auth/auth-by-google"
 
-import {withUnauthorized} from "@/entities/session/guard.ts"
+import {withUnauthorized} from "@/entities/session/guard"
 
 import {routes} from "@/shared/lib/routes"
 

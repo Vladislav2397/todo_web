@@ -5,7 +5,7 @@ import {useUnit} from "effector-react"
 
 import {taskModel} from "@/entities/task"
 
-import {taskApi} from "@/shared/api/tasks.ts"
+import {taskApi} from "@/shared/api/tasks"
 
 export type CompleteTaskButtonProps = {
     task: {

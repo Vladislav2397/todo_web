@@ -5,7 +5,7 @@ import {
     RouteParamsAndQuery
 } from "atomic-router"
 
-import { $session } from './model.ts'
+import { $session } from './model'
 
 export const withAuthorized = <Params extends object>(route: RouteInstance<Params>, config?: { otherwise: RouteInstance<object>}) => {
     const sessionCheckStarted = createEvent<RouteParamsAndQuery<Params>>()

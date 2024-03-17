@@ -1,7 +1,7 @@
-import {Button, Text, TextArea, TextInput} from "@gravity-ui/uikit";
-import {useMedia} from "react-use";
-import {useUnit} from "effector-react";
-import {sample} from "effector";
+import {Button, Text, TextArea, TextInput} from "@gravity-ui/uikit"
+import {useMedia} from "react-use"
+import {useUnit} from "effector-react"
+import {sample} from "effector"
 
 
 import {
@@ -12,9 +12,9 @@ import {
     descriptionUpdated,
     taskCreated,
     titleUpdated
-} from "@/features/task/create-task.ts";
+} from "@/features/task/create-task"
 
-import {routes} from "@/shared/lib/routes";
+import {routes} from "@/shared/lib/routes"
 
 import styles from './CreateTask.module.scss'
 
@@ -27,7 +27,7 @@ sample({
     target: routes.home.open,
 })
 
-export const route = routes.createTask;
+export const route = routes.createTask
 
 export function CreateTaskPage() {
     const [ title, description, updateTitle, updateDescription ] = useUnit([$title, $description, titleUpdated, descriptionUpdated])

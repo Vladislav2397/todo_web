@@ -1,4 +1,4 @@
-import * as taskModel from './model.ts'
+import * as taskModel from './model'
 
 export * from './ui/TaskRow'
 export {
